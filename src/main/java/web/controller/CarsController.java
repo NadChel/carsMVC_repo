@@ -23,9 +23,8 @@ public class CarsController {
     );
 
     @GetMapping
-    public String printSomeCars(@RequestParam(required = false) Integer count, ModelMap model) {
-        model.addAttribute("cars", carList.subList(0,
-                ((count != null && count < 5) ? count : 5)));
+    public String printSomeCars(@RequestParam(defaultValue = "5") int count, ModelMap model) {
+        model.addAttribute("cars", carList.subList(0, count));
         return "cars";
     }
 }
